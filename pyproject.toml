@@ -1,0 +1,18 @@
+[project]
+name = "sphinx_example_includer"
+version = "0.0.1"
+authors = [
+  { name="Ahmad Alobaid", email="ahmad88me@gmail.com"},
+]
+description = "Include code examples to sphinx documentation"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/ahmad88me/sphinx_example_includer"
+Issues = "https://github.com/ahmad88me/sphinx_example_includer/issues"
