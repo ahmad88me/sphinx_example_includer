@@ -16,7 +16,6 @@ def cli():
         '--files',
         nargs='+',
         required=True,
-        # type=argparse.FileType('r'),
         help='one or more files to be '
     )
 
@@ -28,7 +27,7 @@ def cli():
 
     parser.add_argument(
         '--toc-fname',
-        default="examples_test.rst",
+        default="examples.rst",
         help='The name of the toc file'
     )
 
