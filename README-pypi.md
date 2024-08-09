@@ -4,7 +4,7 @@
 
 Automatically Generate .rst files from examples folder for the sphinx documentation
 
-![examples screenshot](examples-screenshot.png)
+![examples screenshot](https://github.com/ahmad88me/sphinx_example_includer/blob/main/examples-screenshot.png?raw=true)
 
 ## Installation
 ```
