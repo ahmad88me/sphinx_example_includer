@@ -1,7 +1,7 @@
 # Sphinx Example Includer
 
 ![tests](../../actions/workflows/python-package.yml/badge.svg)
-
+[![PyPI version](https://badge.fury.io/py/sphinx-example-includer.svg)](https://badge.fury.io/py/sphinx-example-includer)
 
 Automatically Generate .rst files from examples folder for the sphinx documentation
 
