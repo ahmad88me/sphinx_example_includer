@@ -17,7 +17,7 @@ class TestGenerateTocRst(unittest.TestCase):
 
         includer.generate_toc_rst(toc_fname, examples_paths, toc_parent_path)
 
-        expected_examples_txt = "\tto/example1.py\n\tto/example2.py\n"
+        expected_examples_txt = "   to/example1.py\n   to/example2.py\n"
         expected_example_name = "Example Toc"
         expected_rst_content = f""".. _example_toc:
 
@@ -26,7 +26,6 @@ Example Toc
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
 {expected_examples_txt}
 

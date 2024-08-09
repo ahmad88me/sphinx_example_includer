@@ -77,7 +77,7 @@ def generate_toc_rst(toc_fname, examples_paths, toc_parent_path, logger=None, ov
     for expath in examples_paths:
         tokens = expath.split(os.path.sep)
         ex_rel_path = os.path.sep.join(tokens[-2:])
-        examples_txt += f"\t{ex_rel_path}\n"
+        examples_txt += f"   {ex_rel_path}\n"
 
     rst_content = f""".. _{toc_name}:
 
@@ -86,7 +86,6 @@ def generate_toc_rst(toc_fname, examples_paths, toc_parent_path, logger=None, ov
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
 {examples_txt}
 
