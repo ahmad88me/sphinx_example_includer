@@ -8,7 +8,7 @@ from . import common
 
 def cli():
     parser = argparse.ArgumentParser(prog='Sphinx Example Includer',
-                                     description='A tool to include example code or any other files into sphinx documentation automatically')
+                                     description="A Sphinx docs generation tool")
 
     parser.add_argument('--debug', action='store_true', help="Showing debug messages")
     parser.add_argument('--info', action='store_true', help="Showing info messages")

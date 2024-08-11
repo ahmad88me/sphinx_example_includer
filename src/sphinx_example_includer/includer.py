@@ -32,6 +32,7 @@ def generate_examples_rsts(examples, dest_dir, logger=None, overwrite=False):
     for exfile in examples:
         fname, ext = split_fname_ext(exfile)
         rst_filename = f'{fname}.rst'
+        logger.info(f"Generating {rst_filename}")
         example_name = get_name_from_fname(fname)
         with open(exfile, 'r') as example_file:
             code = example_file.read()
@@ -64,6 +65,7 @@ def generate_toc_rst(toc_fname, examples_paths, toc_parent_path, logger=None, ov
     if logger is None:
         logger = common.get_logger(__name__)
     toc_name, _ = split_fname_ext(toc_fname)
+    logger.info(f"Generating {toc_fname}")
     example_name = get_name_from_fname(toc_name)
     examples_txt = ""
     for expath in examples_paths:

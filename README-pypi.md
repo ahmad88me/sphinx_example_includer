@@ -2,10 +2,10 @@
 
 [![PyPI version](https://badge.fury.io/py/sphinx-example-includer.svg)](https://badge.fury.io/py/sphinx-example-includer)
 
-Automatically Generate .rst files from examples folder for the sphinx documentation
+Build Sphinx docs for the package's source code and 
+automatically gaenerate .rst files from examples folder for the sphinx documentation
 
 ![examples screenshot](https://github.com/ahmad88me/sphinx_example_includer/blob/main/examples-screenshot.png?raw=true)
-
 ## Installation
 ```
 pip install sphinx_example_includer
@@ -13,29 +13,46 @@ pip install sphinx_example_includer
 
 ## Usage
 ```
-usage: Sphinx Example Includer [-h] [--debug] [--overwrite] --files FILES [FILES ...] [--dest_dir DEST_DIR] [--toc-fname TOC_FNAME]
+usage: Sphinx Example Includer [-h] [--debug] [--info] [--overwrite] [--files FILES [FILES ...]] [--dest-dir DEST_DIR]
+                               [--toc-fname TOC_FNAME] [--build] [--conf CONF] [--docs-dir DOCS_DIR] [--project-dir PROJECT_DIR]
+                               [--index INDEX]
 
-A tool to include example code or any other files into sphinx documentation automatically
+A Sphinx docs generation tool
 
 options:
   -h, --help            show this help message and exit
   --debug               Showing debug messages
+  --info                Showing info messages
   --overwrite           Overwrite files that already exists
   --files FILES [FILES ...]
                         one or more files to be
-  --dest_dir DEST_DIR   The output directory
+  --dest-dir DEST_DIR   The output directory
   --toc-fname TOC_FNAME
                         The name of the toc file
+  --build               Build Sphinx docs.
+  --conf CONF           The configuration file (e.g., pyproject.toml)
+  --docs-dir DOCS_DIR   The directory of the documentation
+  --project-dir PROJECT_DIR
+                        The path of the project's code
+  --index INDEX         The name of the index file.
+
 ```
 
 ## Example
 ```
-python -m sphinx_example_includer  --files examples/*example*py --overwrite --dest docs/source/examples 
+python -m sphinx_example_includer --info --build --project src --files examples/*example*.py --overwrite
 ```
 
 ## How to use it
-1. Generate the docs using [Sphinx](https://www.sphinx-doc.org/en/master/usage/quickstart.html). 
-2. Install the library into your project.
-3. Run the package as follows `python -m sphinx_example_includer` (don't forget to pass the arguments).
-4. add the toc file to the `indext.rst` (or any other place of your choice).
-5. regenerate the docs (e.g., `make html`).
+
+### Assumptions
+1. You have your example source code in `examples/`
+2. Your code is documented so Sphinx can generate the docs for you.
+
+### Generating the docs
+1. Install the package `sphinx_example_includer`
+2. In the directory of your project (that you want to document), run the command 
+`python -m sphinx_example_includer --build`. Note that the `--build` is the flag responsible for generating 
+the docs. You can also specify the directory of your code with the flag `--project`.
+3. Include the examples into the docs. This can be done by running the same command with 
+`--files` flag and you can choose multiple files using a pattern as shown in the example above.
