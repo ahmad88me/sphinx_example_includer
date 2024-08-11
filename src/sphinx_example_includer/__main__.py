@@ -36,7 +36,6 @@ def cli():
     parser.add_argument("--build", action='store_true', help="Build Sphinx docs.")
     parser.add_argument("--conf", default="pyproject.toml", help="The configuration file (e.g., pyproject.toml)")
     parser.add_argument('--docs-dir', default="docs", help="The directory of the documentation")
-    # parser.add_argument("--build-dir", default="docs/build", help="The build directory for sphinx")
     parser.add_argument("--project-dir", default="src", help="The path of the project's code")
     parser.add_argument("--index", default="index.rst", help="The name of the index file.")
 
