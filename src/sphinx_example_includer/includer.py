@@ -1,6 +1,7 @@
 import os
 import traceback
 import logging
+from . import common
 
 
 def split_fname_ext(fpath):
@@ -12,15 +13,6 @@ def split_fname_ext(fpath):
     return fname, ext
 
 
-def get_logger():
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.WARN)
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.WARN)
-    logger.addHandler(ch)
-    return logger
-
-
 def get_name_from_fname(fname):
     s = fname.replace("_", " ").replace("-", " ")
     return s.title()
@@ -28,7 +20,7 @@ def get_name_from_fname(fname):
 
 def generate_examples_rsts(examples, dest_dir, logger=None, overwrite=False):
     if logger is None:
-        logger = get_logger()
+        logger = common.get_logger(__name__)
     rst_ex_paths = []
     if not os.path.exists(dest_dir):
         try:
@@ -70,7 +62,7 @@ def generate_examples_rsts(examples, dest_dir, logger=None, overwrite=False):
 
 def generate_toc_rst(toc_fname, examples_paths, toc_parent_path, logger=None, overwrite=False):
     if logger is None:
-        logger = get_logger()
+        logger = common.get_logger(__name__)
     toc_name, _ = split_fname_ext(toc_fname)
     example_name = get_name_from_fname(toc_name)
     examples_txt = ""

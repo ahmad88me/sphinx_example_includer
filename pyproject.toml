@@ -12,7 +12,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-
+dependencies = [
+  "tomli>=2.0.1",
+]
 [project.urls]
 Homepage = "https://github.com/ahmad88me/sphinx_example_includer"
 Issues = "https://github.com/ahmad88me/sphinx_example_includer/issues"
