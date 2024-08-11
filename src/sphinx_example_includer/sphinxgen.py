@@ -1,6 +1,6 @@
 import os
 import subprocess
-from .common import get_logger
+from .common import get_logger, write_above_or_end
 import tomli
 
 
@@ -171,5 +171,5 @@ def append_module_to_index(toc_fname, docs_path, index_fname, logger):
         content = f.read()
     if line not in content:
         logger.info(f"Adding module {toc_name} to {index_fname}")
-        with open(index_path, "a") as f:
-            f.write(line)
+        write_above_or_end(index_path, target="Indices and tables", content_to_write=line)
+
