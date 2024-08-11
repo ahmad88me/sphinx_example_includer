@@ -1,7 +1,7 @@
 # Sphinx Example Includer
 
 ![tests](../../actions/workflows/python-package.yml/badge.svg)
-[![PyPI version](https://badge.fury.io/py/sphinx-example-includer.svg)](https://badge.fury.io/py/sphinx-example-includer)
+[![PyPI version](https://badge.fury.io/py/sphinx-example-includer.svg?kill-cache=1)](https://badge.fury.io/py/sphinx-example-includer)
 
 Build Sphinx docs for the package's source code and 
 automatically gaenerate .rst files from examples folder for the sphinx documentation
