@@ -2,7 +2,9 @@
 
 
 Build Sphinx docs for the package's source code and 
-automatically gaenerate .rst files from examples folder for the sphinx documentation
+automatically gaenerate .rst files from examples folder for the sphinx documentation. It is used by the 
+[sphinx-docs action](https://github.com/marketplace/actions/sphinx-docs) to automate
+the generation of sphinx documentation.
 
 ![examples screenshot](https://github.com/ahmad88me/sphinx_example_includer/blob/main/examples-screenshot.png?raw=true)
 ## Installation
