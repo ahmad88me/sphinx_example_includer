@@ -35,7 +35,9 @@ class TestCli(unittest.TestCase):
             conf='pyproject.toml',
             docs_dir='docs',
             project_dir='src',
-            index='index.rst'
+            index='index.rst',
+            readme="readme.test.md",
+            title="Title"
         )
 
         mock_logger = MagicMock()
@@ -51,7 +53,9 @@ class TestCli(unittest.TestCase):
             docs_path='docs',
             index_fname='index.rst',
             project_path='src',
-            logger=mock_logger
+            logger=mock_logger,
+            readme="readme.test.md",
+            title="Title"
         )
 
         mock_generate_examples_rsts.assert_called_once_with(
@@ -99,7 +103,9 @@ class TestCli(unittest.TestCase):
             conf='pyproject.toml',
             docs_dir='docs',
             project_dir='src',
-            index='index.rst'
+            index='index.rst',
+            readme=None,
+            title="Title"
         )
 
         mock_join.return_value = 'docs/index.rst'
@@ -112,6 +118,8 @@ class TestCli(unittest.TestCase):
             "docs_path": 'docs',
             "index_fname": 'index.rst',
             "project_path": 'src',
+            "readme": None,
+            "title": "Title",
             "logger": ANY
         }
 

@@ -20,8 +20,9 @@ class TestSphinxWorkflow(unittest.TestCase):
     @patch("sphinx_example_includer.sphinxgen.fix_sphinx_conf")
     @patch("sphinx_example_includer.sphinxgen.gen_project_docs")
     @patch("sphinx_example_includer.sphinxgen.append_module_to_index")
+    @patch("sphinx_example_includer.sphinxgen.cleanup_index")
     def test_sphinx_workflow(
-        self, mock_append_module_to_index, mock_gen_project_docs,
+        self, mock_cleanup_index, mock_append_module_to_index, mock_gen_project_docs,
         mock_fix_sphinx_conf, mock_build_sphinx, mock_meta_from_conf,
         mock_exists, mock_get_logger
     ):
