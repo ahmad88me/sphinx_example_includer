@@ -24,7 +24,7 @@ def cli():
     parser.add_argument(
         '--dest-dir',
         default="docs/examples",
-        help='The output directory'
+        help='The output directory of the included files inside the docs dir (e.g., docs/examples)'
     )
 
     parser.add_argument(
@@ -33,6 +33,8 @@ def cli():
         help='The name of the toc file'
     )
 
+    parser.add_argument("--title", default="", help="The title of the documentation in the index page.")
+    parser.add_argument("--readme", help="The readme file to include in the docs index page.")
     parser.add_argument("--build", action='store_true', help="Build Sphinx docs.")
     parser.add_argument("--conf", default="pyproject.toml", help="The configuration file (e.g., pyproject.toml)")
     parser.add_argument('--docs-dir', default="docs", help="The directory of the documentation")
@@ -62,7 +64,8 @@ def cli():
         if not args.conf.endswith("pyproject.toml"):
             logger.error(f"Expecting pyproject.toml. Other configuration formats are not yet supported")
         else:
-            sphinx_workflow(conf_path=args.conf, docs_path=args.docs_dir, index_fname=index_fname, project_path=args.project_dir, logger=logger)
+            sphinx_workflow(conf_path=args.conf, docs_path=args.docs_dir, index_fname=index_fname,
+                            project_path=args.project_dir, logger=logger, readme=args.readme, title=args.title)
 
     if args.files:
         rst_files = generate_examples_rsts(dest_dir=args.dest_dir, examples=args.files, logger=logger,

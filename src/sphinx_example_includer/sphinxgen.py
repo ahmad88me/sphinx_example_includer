@@ -4,7 +4,7 @@ from .common import get_logger, write_above_or_end
 import tomli
 
 
-def sphinx_workflow(conf_path, docs_path, project_path, index_fname, logger=None):
+def sphinx_workflow(conf_path, docs_path, project_path, index_fname, logger=None, readme=None, title=""):
     if not logger:
         logger = get_logger(__name__)
 
@@ -16,9 +16,13 @@ def sphinx_workflow(conf_path, docs_path, project_path, index_fname, logger=None
     build_sphinx(meta_data=meta_data, docs_path=docs_path, logger=logger)
     fix_sphinx_conf(project_path=project_path, sphinx_conf_path=os.path.join(docs_path, "conf.py"))
     gen_project_docs(project_path=project_path, docs_path=docs_path, logger=logger)
-    if "name" in meta_data:
-        toc_fname = f"""{meta_data["name"]}.rst"""
+    mod_name = meta_data.get("name", "")
+    cleanup_index(docs_path=docs_path, index_fname=index_fname, title=title)
+    if mod_name:
+        toc_fname = f"""{mod_name}.rst"""
         append_module_to_index(toc_fname=toc_fname, docs_path=docs_path, index_fname=index_fname, logger=logger)
+    if readme:
+        append_readme_to_index(readme_path=readme, docs_path=docs_path, index_fname=index_fname, logger=logger)
 
 
 def fix_sphinx_conf(project_path, sphinx_conf_path):
@@ -36,6 +40,7 @@ extensions += [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.autosummary',
+    'sphinx_mdinclude',
 ]
 
 autosummary_generate = True
@@ -173,3 +178,35 @@ def append_module_to_index(toc_fname, docs_path, index_fname, logger):
         logger.info(f"Adding module {toc_name} to {index_fname}")
         write_above_or_end(index_path, target="Indices and tables", content_to_write=line)
 
+
+def append_readme_to_index(readme_path, docs_path, index_fname, logger):
+    """
+    Include the readme to the index
+    :param toc_fname:
+    :param docs_path:
+    :param index_fname:
+    :return:
+    """
+    index_path = os.path.join(docs_path, index_fname)
+    if not os.path.isabs(readme_path):
+        readme_path = os.path.join(os.path.pardir, readme_path)
+    line = f".. mdinclude:: {readme_path}\n"
+    with open(index_path, "r") as f:
+        content = f.read()
+    if line not in content:
+        logger.info(f"Adding readme {readme_path} to {index_fname}")
+        write_above_or_end(index_path, target=".. toctree::", content_to_write=line)
+
+
+def cleanup_index(docs_path, index_fname, title=""):
+    index_path = os.path.join(docs_path, index_fname)
+    with open(index_path) as f:
+        content = f.read()
+    lines = content.split('\n')
+    new_content = "\n".join(lines[12:])
+    if title:
+        under = "=" * len(title)
+        title = title + f"\n{under}\n"
+    new_content = title + new_content
+    with open(index_path, "w") as f:
+        f.write(new_content)

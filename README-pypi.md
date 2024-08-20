@@ -14,8 +14,8 @@ pip install sphinx_example_includer
 
 ## Usage
 ```
-usage: Sphinx Example Includer [-h] [--debug] [--info] [--overwrite] [--files FILES [FILES ...]] [--dest-dir DEST_DIR]
-                               [--toc-fname TOC_FNAME] [--build] [--conf CONF] [--docs-dir DOCS_DIR] [--project-dir PROJECT_DIR]
+usage: Sphinx Example Includer [-h] [--debug] [--info] [--overwrite] [--files FILES [FILES ...]] [--dest-dir DEST_DIR] [--toc-fname TOC_FNAME]
+                               [--title TITLE] [--readme README] [--build] [--conf CONF] [--docs-dir DOCS_DIR] [--project-dir PROJECT_DIR]
                                [--index INDEX]
 
 A Sphinx docs generation tool
@@ -27,21 +27,22 @@ options:
   --overwrite           Overwrite files that already exists
   --files FILES [FILES ...]
                         one or more files to be
-  --dest-dir DEST_DIR   The output directory
+  --dest-dir DEST_DIR   The output directory of the included files inside the docs dir (e.g., docs/examples)
   --toc-fname TOC_FNAME
                         The name of the toc file
+  --title TITLE         The title of the documentation in the index page.
+  --readme README       The readme file to include in the docs index page.
   --build               Build Sphinx docs.
   --conf CONF           The configuration file (e.g., pyproject.toml)
   --docs-dir DOCS_DIR   The directory of the documentation
   --project-dir PROJECT_DIR
                         The path of the project's code
   --index INDEX         The name of the index file.
-
 ```
 
 ## Example
 ```
-python -m sphinx_example_includer --info --build --project src --files examples/*example*.py --overwrite
+python -m sphinx_example_includer --info --build --project src --files examples/*example*.py --overwrite --readme README.md
 ```
 
 ## How to use it
