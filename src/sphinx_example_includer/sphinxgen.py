@@ -210,7 +210,7 @@ def cleanup_index(docs_path, index_fname, title=""):
         content = f.read()
     lines = content.split('\n')
     cutoff = 0
-    for i, line in lines:
+    for i, line in enumerate(lines):
         if ".. toctree::" in line:
             cutoff = i
             break
