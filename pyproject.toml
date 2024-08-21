@@ -1,6 +1,6 @@
 [project]
 name = "sphinx_example_includer"
-version = "0.4"
+version = "0.5"
 authors = [
   { name="Ahmad Alobaid", email="ahmad88me@gmail.com"},
 ]
