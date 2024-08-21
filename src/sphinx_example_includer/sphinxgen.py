@@ -177,6 +177,9 @@ def append_module_to_index(toc_fname, docs_path, index_fname, logger):
     if line not in content:
         logger.info(f"Adding module {toc_name} to {index_fname}")
         write_above_or_end(index_path, target="Indices and tables", content_to_write=line)
+    with open(index_path, "r") as f:
+        content = f.read()
+        logger.debug(f"index content after appending module {toc_name}: \n{content}\n\n\n")
 
 
 def append_readme_to_index(readme_path, docs_path, index_fname, logger):
@@ -196,6 +199,9 @@ def append_readme_to_index(readme_path, docs_path, index_fname, logger):
     if line not in content:
         logger.info(f"Adding readme {readme_path} to {index_fname}")
         write_above_or_end(index_path, target=".. toctree::", content_to_write=line)
+    with open(index_path, "r") as f:
+        content = f.read()
+        logger.debug(f"index content after appending readme: \n{content}\n\n\n")
 
 
 def cleanup_index(docs_path, index_fname, title=""):
@@ -203,10 +209,17 @@ def cleanup_index(docs_path, index_fname, title=""):
     with open(index_path) as f:
         content = f.read()
     lines = content.split('\n')
-    new_content = "\n".join(lines[12:])
+    cutoff = 0
+    for i, line in lines:
+        if ".. toctree::" in line:
+            cutoff = i
+            break
+
+    new_content = "\n".join(lines[cutoff:])
     if title:
         under = "=" * len(title)
         title = title + f"\n{under}\n"
     new_content = title + new_content
     with open(index_path, "w") as f:
         f.write(new_content)
+
